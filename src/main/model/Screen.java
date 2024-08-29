@@ -44,9 +44,9 @@ public class Screen {
     }
 
     public void update() {
-        for (Particle[] s : screen) {
-            for (Particle p : s) {
-                p.update();
+        for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
+            for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
+                screen[i][j].update();
             }
         }
     }

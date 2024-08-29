@@ -1,6 +1,9 @@
 package ui;
 
 import javax.swing.*;
+
+import model.GameLoop;
+
 import java.awt.*;
 
 public class Main extends JFrame {    
@@ -15,7 +18,7 @@ public class Main extends JFrame {
         setVisible(true);
         this.pack();
         centreOnScreen();
-        mp.gameLoop();
+        new GameLoop(mp);
     }
 
     // MODFIES: this

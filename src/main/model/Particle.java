@@ -26,5 +26,5 @@ public abstract class Particle {
     }
 
     public abstract void update();
- 
+
 }
