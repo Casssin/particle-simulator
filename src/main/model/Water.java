@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import ui.MainPanel;
 
-public class Water extends Solid {
+public class Water extends FallingParticle {
     public Water(int x, int y) {
         super(Color.blue, x, y);
     }

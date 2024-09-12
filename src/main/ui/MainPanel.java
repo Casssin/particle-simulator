@@ -21,6 +21,7 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     public static final int PARTICLE_SIZE = 2;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
+    public static final int CURSOR_RADIUS = 4;
     private Screen screen;
     private int currParticle;
     private int mouseX;
@@ -86,18 +87,38 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         pressed = false;
     }
 
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        if (e.getKeyCode() == KeyEvent.VK_1) {
+            currParticle = 1;
+        } else if (e.getKeyCode() == KeyEvent.VK_2) {
+            currParticle = 2;
+        }
+    }
+
+    // Adds particles in a 10x10 circle
     private void processInput() {
         if (pressed) {
-            int x = mouseX / PARTICLE_SIZE;
-            int y = mouseY / PARTICLE_SIZE;
-            Particle particle = selectedParticle(x, y);
-            screen.changeValue(x, y, particle);
+            int centerX = mouseX / PARTICLE_SIZE;
+            int centerY = mouseY / PARTICLE_SIZE;
+            for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
+                for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
+                    int absX = x - centerX;
+                    int absY = y - centerY; // "absolute" values of the function, 
+                    // used to discern whether or not a point is part of the circle
+                    if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
+                    absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
+                        Particle particle = selectedParticle(x, y);
+                        screen.changeValue(x, y, particle);
+                    }
+                }
+            }
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
@@ -114,16 +135,6 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
-        if (e.getKeyCode() == KeyEvent.VK_1) {
-            currParticle = 1;
-        } else if (e.getKeyCode() == KeyEvent.VK_2) {
-            currParticle = 2;
-        }
     }
 
     @Override

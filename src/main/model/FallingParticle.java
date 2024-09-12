@@ -2,10 +2,10 @@ package model;
 
 import java.awt.Color;
 
-public abstract class Solid extends Particle {
+public abstract class FallingParticle extends Particle {
     protected Screen screen;
 
-    public Solid(Color color, int x, int y) {
+    public FallingParticle(Color color, int x, int y) {
         super(color, x, y);
         screen = Screen.getInstance();
     }

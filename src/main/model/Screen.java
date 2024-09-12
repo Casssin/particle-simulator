@@ -43,6 +43,10 @@ public class Screen {
         return this.getClass(x, y).equals("Air");
     }
 
+    public Boolean isWater(int x, int y) {
+        return this.getClass(x, y).equals("Water");
+    }
+
     public void update() {
         for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
             for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
@@ -53,5 +57,6 @@ public class Screen {
 
     public void changeValue(int x, int y, Particle val) {
         screen[x][y] = val;
+        val.setCoords(x, y);
     }
 }

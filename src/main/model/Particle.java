@@ -25,6 +25,10 @@ public abstract class Particle {
         return y;
     }
 
+    public void setCoords(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
     public abstract void update();
 
 }

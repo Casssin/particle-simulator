@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ui.Main;
 import ui.MainPanel;
 
 public class SandTest {
@@ -52,4 +53,24 @@ public class SandTest {
         assertEquals(MainPanel.ARR_HEIGHT - 1, sand.getY());
         assertEquals("Sand", screen.getClass(2, MainPanel.ARR_HEIGHT - 1));
     }
+
+    @Test
+    void testSwap() {
+        sand.moveTo(1, MainPanel.ARR_HEIGHT - 2);
+        screen.changeValue(1, MainPanel.ARR_HEIGHT - 1, new Water(1, MainPanel.ARR_HEIGHT - 1));
+        sand.swap(1, MainPanel.ARR_HEIGHT - 1);
+
+        assertTrue(screen.isWater(1, MainPanel.ARR_HEIGHT - 2));
+        assertEquals(1, sand.getX());
+        assertEquals(MainPanel.ARR_HEIGHT - 1, sand.getY());
+    }
 }
+
+
+
+
+
+
+
+
+
