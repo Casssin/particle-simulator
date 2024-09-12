@@ -9,10 +9,12 @@ public class Water extends FallingParticle {
         super(Color.blue, x, y);
     }
 
-    // if directly below is open, go down 
+    // if directly below is open, go down
     // if below is blocked, but below and left is open, go there
-    // if below is blocked and below and left is blocked, but below and right is open, go there
-    // then trying going left, then try going right, then go nowhere if all else fails
+    // if below is blocked and below and left is blocked, but below and right is
+    // open, go there
+    // then trying going left, then try going right, then go nowhere if all else
+    // fails
     @Override
     public void update() {
         if (y + 1 < MainPanel.ARR_HEIGHT) {
@@ -28,5 +30,7 @@ public class Water extends FallingParticle {
                 this.moveTo(x + 1, y);
             }
         }
+        hasUpdated = true;
     }
+
 }

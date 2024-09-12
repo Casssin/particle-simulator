@@ -30,7 +30,7 @@ public class Screen {
         }
     }
 
-    public Particle getValue(int x, int y) {
+    public Particle getParticle(int x, int y) {
         return screen[x][y];
     }
 
@@ -47,10 +47,24 @@ public class Screen {
         return this.getClass(x, y).equals("Water");
     }
 
+    // public void update() {
+    // for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
+    // for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
+    // screen[i][j].update();
+    // }
+    // }
+    // }
+
     public void update() {
         for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
-            for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
-                screen[i][j].update();
+            for (int j = 0; j < MainPanel.ARR_HEIGHT; j++) {
+                if (!screen[i][j].hasUpdated()) 
+                    screen[i][j].update();
+            }
+        }
+        for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
+            for (int j = 0; j < MainPanel.ARR_HEIGHT; j++) {
+                screen[i][j].notUpdated();
             }
         }
     }

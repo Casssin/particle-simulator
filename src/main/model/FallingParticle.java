@@ -11,7 +11,8 @@ public abstract class FallingParticle extends Particle {
     }
 
     protected void moveTo(int x, int y) {
-        screen.changeValue(this.x, this.y, new Air(this.x, this.y));
+        Particle toBeMoved = screen.getParticle(x, y);
+        screen.changeValue(this.x, this.y, toBeMoved);
         this.x = x;
         this.y = y;
         screen.changeValue(this.x, this.y, this);

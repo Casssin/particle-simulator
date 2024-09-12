@@ -6,11 +6,13 @@ public abstract class Particle {
     private Color color;
     protected int x;
     protected int y;
+    protected Boolean hasUpdated;
 
     public Particle(Color color, int x, int y) {
         this.color = color;
         this.x = x;
         this.y = y;
+        hasUpdated = false;
     }
 
     public Color getColor() {
@@ -29,6 +31,16 @@ public abstract class Particle {
         this.x = x;
         this.y = y;
     }
+
+    
+    public void notUpdated() {
+        hasUpdated = false;
+    }
+
+    public Boolean hasUpdated() {
+        return hasUpdated;
+    }
+
     public abstract void update();
 
 }

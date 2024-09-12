@@ -47,15 +47,15 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
 
         for (int i = 0; i < ARR_WIDTH; i++) {
             for (int j = 0; j < ARR_HEIGHT; j++) {
-                g.setColor(screen.getValue(i, j).getColor());
+                g.setColor(screen.getParticle(i, j).getColor());
                 g.fillRect(i * PARTICLE_SIZE, j * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
             }
         }
     }
 
     public void update() {
-        screen.update();
         this.processInput();
+        screen.update();
     }
 
     private Particle selectedParticle(int x, int y) {

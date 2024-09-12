@@ -31,5 +31,7 @@ public class Sand extends SolidFallingParticle {
                 this.swap(x + 1, y + 1);
             }
         }
+
+        hasUpdated = true;
     }
 }

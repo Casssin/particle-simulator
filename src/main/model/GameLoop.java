@@ -34,5 +34,6 @@ public class GameLoop {
             }
             mp.repaint();
         }
+
     }
 }

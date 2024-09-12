@@ -8,7 +8,7 @@ public abstract class SolidFallingParticle extends FallingParticle {
     }
     
     protected void swap(int x, int y) {
-        Particle toBeSwapped = screen.getValue(x, y);
+        Particle toBeSwapped = screen.getParticle(x, y);
         screen.changeValue(this.x, this.y, toBeSwapped);
         screen.changeValue(x, y, this);
     }
