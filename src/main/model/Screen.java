@@ -47,6 +47,10 @@ public class Screen {
         return this.getClass(x, y).equals("Water");
     }
 
+    public Boolean inBounds(int x, int y) {
+        return (x >= 0) && (x < MainPanel.ARR_WIDTH) && (y >= 0) && (y < MainPanel.ARR_HEIGHT);
+    }
+
     // public void update() {
     // for (int i = MainPanel.ARR_WIDTH - 1; i >= 0; i--) {
     // for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
