@@ -37,28 +37,41 @@ public class Water extends FallingParticle {
     // moves as far without phasing through walls
     private void disperse() {
         boolean breakEarly = false;
-        int rightValue = 0, leftValue = 0;
+        int leftValue = 0;
+        int rightValue = 0;
         for (int i = x + 1; i < Math.min(MainPanel.ARR_WIDTH, x + dispersionRate); i++) {
-            if (!screen.isAir(i, y)) {
+            if (!screen.inBounds(i, y) || !screen.isAir(i, y)) {
+                // this.moveTo(i - 1, y);
                 rightValue = i - x;
                 breakEarly = true;
                 break;
             }
         }
         if (!breakEarly && screen.inBounds(x + dispersionRate - 1, y)) {
-            this.moveTo(x + dispersionRate - 1, y);
+            // this.moveTo(x + dispersionRate - 1, y);
+            rightValue = dispersionRate;
         }
-
+    
         breakEarly = false;
-        for (int i = x - 1; i > x - dispersionRate; i++) {
-            if (!screen.isAir(i, y) || !screen.inBounds(i, y)) {
-                this.moveTo(i + 1, y);
+        for (int i = x - 1; i > Math.max(0, x - dispersionRate); i--) {
+            if (!screen.inBounds(i, y) || !screen.isAir(i, y)) {
+                // this.moveTo(i + 1, y);
+                leftValue = x - i;
                 breakEarly = true;
                 break;
             }
         }
-        if (!breakEarly) {
-            this.moveTo(x - dispersionRate + 1, y);
+        if (!breakEarly && screen.inBounds(x - dispersionRate + 1, y)) {
+            // this.moveTo(x - dispersionRate + 1, y);
+            leftValue = dispersionRate;
+        }
+
+        // determine if right or left is bigger and move that direction
+        if (rightValue >= leftValue) {
+            this.moveTo(rightValue + x - 1, y);
+        }
+        else {
+            this.moveTo(x - leftValue + 1, y);
         }
     }
 

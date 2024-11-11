@@ -18,7 +18,7 @@ import java.awt.event.MouseMotionListener;
 public class MainPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
-    public static final int PARTICLE_SIZE = 2;
+    public static final int PARTICLE_SIZE = 4;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
     public static final int CURSOR_RADIUS = 4;
