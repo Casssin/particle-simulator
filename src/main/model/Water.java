@@ -5,7 +5,7 @@ import java.awt.Color;
 import ui.MainPanel;
 
 public class Water extends FallingParticle {
-    private static int dispersionRate = 5;
+    private static final int DISPERSION_RATE = 5;
 
     public Water(int x, int y) {
         super(Color.blue, x, y);
@@ -33,45 +33,26 @@ public class Water extends FallingParticle {
         hasUpdated = true;
     }
 
+    private int calculateDisperseValue(int startX, int direction) {
+        for (int i = 1; i < DISPERSION_RATE; i++) {
+            int checkX = startX + direction * i;
+            if (!screen.inBounds(checkX, y) || !screen.isAir(checkX, y)) {
+                return i - 1;
+            }
+        }
+        return DISPERSION_RATE - 1;
+    }
+    
     // To disperse water better, checks every element between current pos and pos
     // moves as far without phasing through walls
     private void disperse() {
-        boolean breakEarly = false;
-        int leftValue = 0;
-        int rightValue = 0;
-        for (int i = x + 1; i < Math.min(MainPanel.ARR_WIDTH, x + dispersionRate); i++) {
-            if (!screen.inBounds(i, y) || !screen.isAir(i, y)) {
-                // this.moveTo(i - 1, y);
-                rightValue = i - x;
-                breakEarly = true;
-                break;
-            }
-        }
-        if (!breakEarly && screen.inBounds(x + dispersionRate - 1, y)) {
-            // this.moveTo(x + dispersionRate - 1, y);
-            rightValue = dispersionRate;
-        }
-    
-        breakEarly = false;
-        for (int i = x - 1; i > Math.max(0, x - dispersionRate); i--) {
-            if (!screen.inBounds(i, y) || !screen.isAir(i, y)) {
-                // this.moveTo(i + 1, y);
-                leftValue = x - i;
-                breakEarly = true;
-                break;
-            }
-        }
-        if (!breakEarly && screen.inBounds(x - dispersionRate + 1, y)) {
-            // this.moveTo(x - dispersionRate + 1, y);
-            leftValue = dispersionRate;
-        }
+        int rightValue = calculateDisperseValue(x, 1);
+        int leftValue = calculateDisperseValue(x, -1);
 
-        // determine if right or left is bigger and move that direction
         if (rightValue >= leftValue) {
-            this.moveTo(rightValue + x - 1, y);
-        }
-        else {
-            this.moveTo(x - leftValue + 1, y);
+            this.moveTo(x + rightValue, y);
+        } else {
+            this.moveTo(x - leftValue, y);
         }
     }
 

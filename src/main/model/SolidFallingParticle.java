@@ -3,8 +3,10 @@ package model;
 import java.awt.Color;
 
 public abstract class SolidFallingParticle extends FallingParticle {
+    protected float velocityY;
     public SolidFallingParticle(Color color, int x, int y) {
         super(color, x, y);
+        velocityY = 0;
     }
     
     protected void swap(int x, int y) {
