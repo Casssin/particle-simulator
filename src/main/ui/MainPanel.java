@@ -7,6 +7,7 @@ import model.Screen;
 import model.Water;
 import model.Air;
 import model.Particle;
+import model.Wood;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,10 +19,10 @@ import java.awt.event.MouseMotionListener;
 public class MainPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     public static final int SCREEN_WIDTH = 1600;
     public static final int SCREEN_HEIGHT = 900;
-    public static final int PARTICLE_SIZE = 8;
+    public static final int PARTICLE_SIZE = 4;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
-    public static final int CURSOR_RADIUS = 2;
+    public static final int CURSOR_RADIUS = 4;
     private Screen screen;
     private int currParticle;
     private int mouseX;
@@ -58,11 +59,31 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         screen.update();
     }
 
+    // private void drawCursor(Graphics g) {
+    //     g = (Graphics2D) g;
+    //     int centerX = mouseX / PARTICLE_SIZE;
+    //     int centerY = mouseY / PARTICLE_SIZE;
+    //     for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
+    //         for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
+    //             float absX = x - centerX;
+    //             float absY = y - centerY; // "absolute" values of the function, 
+    //             // used to discern whether or not a point is part of the circle
+    //             if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
+    //             absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
+    //                 g.setColor(Color.magenta);
+    //                 g.fillRect(x * PARTICLE_SIZE, y * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
+    //             }
+    //         }
+    //     } 
+    // }
+
     private Particle selectedParticle(int x, int y) {
         if (currParticle == 1) {
             return new Sand(x, y);
         } else if (currParticle == 2) {
             return new Water(x, y);
+        } else if (currParticle == 3) {
+            return new Wood(x, y);
         } else {
             return new Air(x, y);
         }
@@ -93,6 +114,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             currParticle = 1;
         } else if (e.getKeyCode() == KeyEvent.VK_2) {
             currParticle = 2;
+        } else if (e.getKeyCode() == KeyEvent.VK_3) {
+            currParticle = 3;
+        } else if (e.getKeyCode() == KeyEvent.VK_0) {
+            currParticle = 0;
         }
     }
 
@@ -103,11 +128,11 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             int centerY = mouseY / PARTICLE_SIZE;
             for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
                 for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
-                    int absX = x - centerX;
-                    int absY = y - centerY; // "absolute" values of the function, 
+                    float absX = x - centerX;
+                    float absY = y - centerY; // "absolute" values of the function, 
                     // used to discern whether or not a point is part of the circle
                     if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
-                    absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
+                    absX * absX + absY * absY < CURSOR_RADIUS * CURSOR_RADIUS) {
                         Particle particle = selectedParticle(x, y);
                         screen.changeValue(x, y, particle);
                     }

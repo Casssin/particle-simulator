@@ -6,7 +6,7 @@ public abstract class SolidFallingParticle extends FallingParticle {
     protected float velocityY;
     public SolidFallingParticle(Color color, int x, int y) {
         super(color, x, y);
-        velocityY = 0;
+        velocityY = 0.5f;
     }
     
     protected void swap(int x, int y) {
