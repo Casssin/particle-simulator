@@ -3,12 +3,16 @@ package model;
 import java.awt.Color;
 
 import ui.MainPanel;
+import java.util.Random;
 
 public class Water extends FallingParticle {
-    private static final int DISPERSION_RATE = 5;
+    private static final int DISPERSION_RATE = 20 / MainPanel.PARTICLE_SIZE;
+    private static final Color COLOR = new Color(22, 106, 250);
+    private Random rand;
 
     public Water(int x, int y) {
-        super(Color.blue, x, y);
+        super(COLOR, x, y, false);
+        rand = new Random();
     }
 
     // if directly below is open, go down
@@ -21,12 +25,17 @@ public class Water extends FallingParticle {
     public void update() {
         if (y + 1 < MainPanel.ARR_HEIGHT) {
             if (screen.isAir(x, y + 1)) {
-                this.moveTo(x, y + 1);
+                fallDown(x, y);
             } else if (x - 1 >= 0 && screen.isAir(x - 1, y + 1)) {
-                this.moveTo(x - 1, y + 1);
+                if (x + 1 < MainPanel.ARR_WIDTH && screen.isAir(x + 1, y + 1)) {
+                    this.moveTo(x + (rand.nextInt(2) == 1 ? 1 : -1), y + 1);
+                }
+                else {
+                    this.moveTo(x - 1, y + 1);
+                }
             } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isAir(x + 1, y + 1)) {
                 this.moveTo(x + 1, y + 1);
-            } else {
+            } else if (screen.isAir(x + 1, y) || screen.isAir(x - 1, y)) {
                 disperse();
             }
         }
@@ -49,8 +58,10 @@ public class Water extends FallingParticle {
         int rightValue = calculateDisperseValue(x, 1);
         int leftValue = calculateDisperseValue(x, -1);
 
-        if (rightValue >= leftValue) {
+        if (rightValue > leftValue) {
             this.moveTo(x + rightValue, y);
+        } else if (rightValue == leftValue) {
+            this.moveTo(x + (rand.nextInt(2) == 1 ? rightValue : -leftValue), y);
         } else {
             this.moveTo(x - leftValue, y);
         }

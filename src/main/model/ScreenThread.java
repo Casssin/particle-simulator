@@ -54,7 +54,7 @@ public class ScreenThread extends Thread {
 
             // Perform screen updates
             for (int i = startX; i < endX; i++) {
-                for (int j = 0; j < MainPanel.ARR_HEIGHT; j++) {
+                for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {
                     if (!screen[i][j].hasUpdated()) {
                         screen[i][j].update();
                     }

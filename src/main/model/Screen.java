@@ -52,7 +52,7 @@ public class Screen {
     }
 
     public Boolean isAir(int x, int y) {
-        return this.getClass(x, y).equals("Air");
+        return inBounds(x, y) && this.getClass(x, y).equals("Air");
     }
 
     public Boolean isWater(int x, int y) {

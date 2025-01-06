@@ -5,8 +5,10 @@ import java.awt.Color;
 import ui.MainPanel;
 
 public class Sand extends SolidFallingParticle {
+    private static final Color COLOR = new Color(255, 229, 33);
+    
     public Sand(int x, int y) {
-        super(Color.yellow, x, y);
+        super(COLOR, x, y);
     }
 
     // if directly below is open, go down
@@ -18,9 +20,7 @@ public class Sand extends SolidFallingParticle {
     public void update() {
         if (y + 1 < MainPanel.ARR_HEIGHT) {
             if (screen.isAir(x, y + 1)) {
-                velocityY += 0.25;
-                velocityY = calcFallBelow(y);
-                this.moveTo(x, y + (int) velocityY);
+                fallDown(x, y);
             } else if (x - 1 >= 0 && screen.isAir(x - 1, y + 1)) {
                 this.moveTo(x - 1, y + 1);
             } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isAir(x + 1, y + 1)) {
@@ -39,14 +39,5 @@ public class Sand extends SolidFallingParticle {
         hasUpdated = true;
     }
 
-    private float calcFallBelow(int startY) {
-        for (int i = 1; i <= (int) velocityY; i++) {
-            int checkY = startY + i;
-            if (!screen.inBounds(x, checkY) || !screen.isAir(x, checkY)) {
-                return i - 1;
-            }
-        }
-        return velocityY;
-    }
 }
 

@@ -17,12 +17,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MainPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
-    public static final int SCREEN_WIDTH = 1600;
-    public static final int SCREEN_HEIGHT = 900;
-    public static final int PARTICLE_SIZE = 4;
+    public static final int SCREEN_WIDTH = 1280;
+    public static final int SCREEN_HEIGHT = 720;
+    public static final int PARTICLE_SIZE = 2;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
-    public static final int CURSOR_RADIUS = 4;
+    public static final int CURSOR_RADIUS = 16;
     private Screen screen;
     private int currParticle;
     private int mouseX;
@@ -32,7 +32,7 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     public MainPanel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setFocusable(true);
-        this.setBackground(Color.gray);
+        this.setBackground(Color.black);
         screen = Screen.getInstance();
         this.addKeyListener(this);
         this.addMouseListener(this);

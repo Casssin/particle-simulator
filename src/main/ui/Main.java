@@ -10,7 +10,7 @@ public class Main extends JFrame {
     private MainPanel mp;
 
     public Main() {
-        super("Game Of Life");
+        super("Sand Simulation");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         mp = new MainPanel();
         this.add(mp);
