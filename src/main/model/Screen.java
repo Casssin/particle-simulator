@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -15,10 +16,11 @@ public class Screen {
     public Particle[][] screen;
     private static Screen instance = null;
     public final static int THREAD_COUNT = 12;
+    private Random rand;
 
     private Screen() {
         screen = new Particle[MainPanel.ARR_WIDTH][MainPanel.ARR_HEIGHT];
-
+        rand = new Random();
         // for (int i = 0; i < THREAD_COUNT; i++) {
         //     mutex[i] = new ReentrantLock();
         //     cond[i] = mutex[i].newCondition();
@@ -51,11 +53,20 @@ public class Screen {
         return temp.substring(temp.indexOf(".") + 1);
     }
 
-    public Boolean isAir(int x, int y) {
-        return inBounds(x, y) && this.getClass(x, y).equals("Air");
+
+    public boolean isGas(int x, int y) {
+        return inBounds(x, y) && screen[x][y] instanceof GasParticle;
+    }
+    
+    public boolean isAir(int x, int y) {
+        return inBounds(x, y) && screen[x][y] instanceof Air;
     }
 
-    public Boolean isWater(int x, int y) {
+    public boolean isWood(int x, int y) {
+        return inBounds(x, y) && this.getClass(x, y).equals("Wood");
+    }
+
+    public boolean isWater(int x, int y) {
         return this.getClass(x, y).equals("Water");
     }
 
@@ -82,11 +93,19 @@ public class Screen {
         AtomicInteger currentPhase = new AtomicInteger(1); // 1 = odd, 0 = even
         AtomicInteger threadsCompleted = new AtomicInteger(0);
 
-        int div = MainPanel.ARR_WIDTH / THREAD_COUNT;
 
-        for (int i = 0; i < THREAD_COUNT; i++) {
-            int startX = div * i;
-            int endX = (i == THREAD_COUNT - 1) ? MainPanel.ARR_WIDTH : div * (i + 1);
+
+        int div = MainPanel.ARR_WIDTH / THREAD_COUNT;
+        int randomOffset = rand.nextInt(15);
+        int startX = 0;
+        int endX = div + randomOffset;
+        Thread firstThread = new ScreenThread(startX, endX, mutex, oddCondition, evenCondition, currentPhase, threadsCompleted, THREAD_COUNT, false);
+        threads.add(firstThread);
+        firstThread.start();
+
+        for (int i = 1; i < THREAD_COUNT; i++) {
+            startX = div * i + randomOffset;
+            endX = (i == THREAD_COUNT - 1) ? MainPanel.ARR_WIDTH : div * (i + 1) + randomOffset;
             boolean isOdd = (i % 2 == 1);
             Thread thread = new ScreenThread(startX, endX, mutex, oddCondition, evenCondition, currentPhase, threadsCompleted, THREAD_COUNT, isOdd);
             threads.add(thread);

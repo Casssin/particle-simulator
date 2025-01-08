@@ -16,8 +16,8 @@ public class ScreenTest {
     @Test
     void testIsAir() {
         screen.changeValue(0, 0, new Sand(0, 0));
-        assertFalse(screen.isAir(0, 0));
-        assertTrue(screen.isAir(1, 1));
+        assertFalse(screen.isGas(0, 0));
+        assertTrue(screen.isGas(1, 1));
     }
 
     @Test

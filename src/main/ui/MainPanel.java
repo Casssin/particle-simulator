@@ -4,8 +4,10 @@ import javax.swing.*;
 
 import model.Sand;
 import model.Screen;
+import model.Smoke;
 import model.Water;
 import model.Air;
+import model.Fire;
 import model.Particle;
 import model.Wood;
 
@@ -84,6 +86,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             return new Water(x, y);
         } else if (currParticle == 3) {
             return new Wood(x, y);
+        } else if (currParticle == 4) {
+            return new Fire(x, y);
+        } else if (currParticle == 5) {
+            return new Smoke(x, y);
         } else {
             return new Air(x, y);
         }
@@ -116,6 +122,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             currParticle = 2;
         } else if (e.getKeyCode() == KeyEvent.VK_3) {
             currParticle = 3;
+        } else if (e.getKeyCode() == KeyEvent.VK_4) {
+            currParticle = 4;
+        } else if (e.getKeyCode() == KeyEvent.VK_5) {
+            currParticle = 5;
         } else if (e.getKeyCode() == KeyEvent.VK_0) {
             currParticle = 0;
         }

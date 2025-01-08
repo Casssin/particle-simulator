@@ -51,7 +51,7 @@ public class ScreenThread extends Thread {
             // System.out.print(Thread.currentThread().getId());
             // System.out.print(": isOdd: ");
             // System.out.println(isOdd);
-
+            
             // Perform screen updates
             for (int i = startX; i < endX; i++) {
                 for (int j = MainPanel.ARR_HEIGHT - 1; j >= 0; j--) {

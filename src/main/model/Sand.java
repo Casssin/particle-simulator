@@ -19,11 +19,11 @@ public class Sand extends SolidFallingParticle {
     @Override
     public void update() {
         if (y + 1 < MainPanel.ARR_HEIGHT) {
-            if (screen.isAir(x, y + 1)) {
+            if (screen.isGas(x, y + 1)) {
                 fallDown(x, y);
-            } else if (x - 1 >= 0 && screen.isAir(x - 1, y + 1)) {
+            } else if (x - 1 >= 0 && screen.isGas(x - 1, y + 1)) {
                 this.moveTo(x - 1, y + 1);
-            } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isAir(x + 1, y + 1)) {
+            } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isGas(x + 1, y + 1)) {
                 this.moveTo(x + 1, y + 1);
             } else if (screen.isWater(x, y + 1)) {
                 this.swap(x, y + 1);
