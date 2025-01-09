@@ -11,7 +11,7 @@ public abstract class FallingParticle extends Particle {
     }
 
     protected void fallDown(int x, int y) {
-        velocityY += 0.25;
+        velocityY += 0.25f;
         velocityY = calcFallBelow(y);
         this.moveTo(x, y + (int) velocityY);
     }   

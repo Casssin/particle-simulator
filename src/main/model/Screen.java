@@ -53,11 +53,18 @@ public class Screen {
         return temp.substring(temp.indexOf(".") + 1);
     }
 
-
     public boolean isGas(int x, int y) {
         return inBounds(x, y) && screen[x][y] instanceof GasParticle;
     }
+
+    public boolean isFlammable(int x, int y) {
+        return inBounds(x, y) && screen[x][y] instanceof Flammable;
+    }
     
+    public int ignitionChance(int x, int y) {
+        return ((Flammable) screen[x][y]).ignitionChance();
+    }
+
     public boolean isAir(int x, int y) {
         return inBounds(x, y) && screen[x][y] instanceof Air;
     }
@@ -67,7 +74,7 @@ public class Screen {
     }
 
     public boolean isWater(int x, int y) {
-        return this.getClass(x, y).equals("Water");
+        return inBounds(x, y) && screen[x][y] instanceof Water;
     }
 
     public boolean inBounds(int x, int y) {

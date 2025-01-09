@@ -5,9 +5,11 @@ import javax.swing.*;
 import model.Sand;
 import model.Screen;
 import model.Smoke;
+import model.Steam;
 import model.Water;
 import model.Air;
 import model.Fire;
+import model.Gunpowder;
 import model.Particle;
 import model.Wood;
 
@@ -24,7 +26,7 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     public static final int PARTICLE_SIZE = 2;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
-    public static final int CURSOR_RADIUS = 16;
+    public static final int CURSOR_RADIUS = 8;
     private Screen screen;
     private int currParticle;
     private int mouseX;
@@ -61,24 +63,6 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         screen.update();
     }
 
-    // private void drawCursor(Graphics g) {
-    //     g = (Graphics2D) g;
-    //     int centerX = mouseX / PARTICLE_SIZE;
-    //     int centerY = mouseY / PARTICLE_SIZE;
-    //     for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
-    //         for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
-    //             float absX = x - centerX;
-    //             float absY = y - centerY; // "absolute" values of the function, 
-    //             // used to discern whether or not a point is part of the circle
-    //             if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
-    //             absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
-    //                 g.setColor(Color.magenta);
-    //                 g.fillRect(x * PARTICLE_SIZE, y * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
-    //             }
-    //         }
-    //     } 
-    // }
-
     private Particle selectedParticle(int x, int y) {
         if (currParticle == 1) {
             return new Sand(x, y);
@@ -90,6 +74,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             return new Fire(x, y);
         } else if (currParticle == 5) {
             return new Smoke(x, y);
+        } else if (currParticle == 6) {
+            return new Steam(x, y);
+        } else if (currParticle == 7) {
+            return new Gunpowder(x, y);
         } else {
             return new Air(x, y);
         }
@@ -126,6 +114,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             currParticle = 4;
         } else if (e.getKeyCode() == KeyEvent.VK_5) {
             currParticle = 5;
+        } else if (e.getKeyCode() == KeyEvent.VK_6) {
+            currParticle = 6;
+        } else if (e.getKeyCode() == KeyEvent.VK_7) {
+            currParticle = 7;
         } else if (e.getKeyCode() == KeyEvent.VK_0) {
             currParticle = 0;
         }
@@ -175,4 +167,22 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     public void keyReleased(KeyEvent e) {
     }
 
+
+    // private void drawCursor(Graphics g) {
+    //     g = (Graphics2D) g;
+    //     int centerX = mouseX / PARTICLE_SIZE;
+    //     int centerY = mouseY / PARTICLE_SIZE;
+    //     for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
+    //         for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
+    //             float absX = x - centerX;
+    //             float absY = y - centerY; // "absolute" values of the function, 
+    //             // used to discern whether or not a point is part of the circle
+    //             if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
+    //             absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
+    //                 g.setColor(Color.magenta);
+    //                 g.fillRect(x * PARTICLE_SIZE, y * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
+    //             }
+    //         }
+    //     } 
+    // }
 }
