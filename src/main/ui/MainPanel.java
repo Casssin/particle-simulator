@@ -10,6 +10,7 @@ import model.Water;
 import model.Air;
 import model.Fire;
 import model.Gunpowder;
+import model.Oil;
 import model.Particle;
 import model.Wood;
 
@@ -78,6 +79,8 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             return new Steam(x, y);
         } else if (currParticle == 7) {
             return new Gunpowder(x, y);
+        } else if (currParticle == 8) {
+            return new Oil(x, y);
         } else {
             return new Air(x, y);
         }
@@ -118,6 +121,8 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             currParticle = 6;
         } else if (e.getKeyCode() == KeyEvent.VK_7) {
             currParticle = 7;
+        } else if (e.getKeyCode() == KeyEvent.VK_8) {
+            currParticle = 8;
         } else if (e.getKeyCode() == KeyEvent.VK_0) {
             currParticle = 0;
         }

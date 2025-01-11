@@ -61,6 +61,14 @@ public class Screen {
         return inBounds(x, y) && screen[x][y] instanceof Flammable;
     }
     
+    public boolean isLiquid(int x, int y) {
+        return inBounds(x, y) &&  screen[x][y] instanceof FallingLiquid;
+    }
+
+    public int getLiquidDensity(int x, int y) {
+        return ((FallingLiquid) screen[x][y]).getDensity();
+    }
+    
     public int ignitionChance(int x, int y) {
         return ((Flammable) screen[x][y]).ignitionChance();
     }

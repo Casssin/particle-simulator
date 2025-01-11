@@ -25,11 +25,11 @@ public class Sand extends SolidFallingParticle {
                 this.moveTo(x - 1, y + 1);
             } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isGas(x + 1, y + 1)) {
                 this.moveTo(x + 1, y + 1);
-            } else if (screen.isWater(x, y + 1)) {
+            } else if (screen.isLiquid(x, y + 1)) {
                 this.swap(x, y + 1);
-            } else if (x - 1 >= 0 && screen.isWater(x - 1, y + 1)) {
+            } else if (x - 1 >= 0 && screen.isLiquid(x - 1, y + 1)) {
                 this.swap(x - 1, y + 1);
-            } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isWater(x + 1, y + 1)) {
+            } else if (x + 1 < MainPanel.ARR_WIDTH && screen.isLiquid(x + 1, y + 1)) {
                 this.swap(x + 1, y + 1);
             } else {
                 velocityY = 0;
