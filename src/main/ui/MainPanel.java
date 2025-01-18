@@ -28,16 +28,19 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
     public static final int CURSOR_RADIUS = 8;
+    private static final Color COLOR = new Color(34,34,34);
     private Screen screen;
-    private int currParticle;
+    public int currParticle;
     private int mouseX;
     private int mouseY;
     private Boolean pressed;
+    private AllButtons buttons;
+    private LabelPanel lp;
 
     public MainPanel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setFocusable(true);
-        this.setBackground(Color.black);
+        this.setBackground(COLOR);
         screen = Screen.getInstance();
         this.addKeyListener(this);
         this.addMouseListener(this);
@@ -46,17 +49,29 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         mouseX = 0;
         mouseY = 0;
         pressed = false;
+        this.setLayout(new BorderLayout());
+        buttons = new AllButtons(this);
+        // buttons.setBorder(BorderFactory.createLineBorder(Color.RED)); // Debug border
+        this.add(buttons, BorderLayout.EAST);
+        this.setVisible(true);
+        lp = new LabelPanel();
+        // lp.setBorder(BorderFactory.createLineBorder(Color.RED)); // Debug border
+        this.add(lp, BorderLayout.CENTER);
     }
 
-    public void paint(Graphics g) {
-        g = (Graphics2D) g;
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         for (int i = 0; i < ARR_WIDTH; i++) {
             for (int j = 0; j < ARR_HEIGHT; j++) {
                 g.setColor(screen.getParticle(i, j).getColor());
                 g.fillRect(i * PARTICLE_SIZE, j * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
             }
         }
+    }
+
+    public void setLabel(int hoverParticle) {
+        lp.setLabel(hoverParticle);
     }
 
     public void update() {

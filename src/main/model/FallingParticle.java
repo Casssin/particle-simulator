@@ -27,5 +27,4 @@ public abstract class FallingParticle extends Particle {
         return velocityY;
     }
 
-    public abstract void update();
 }

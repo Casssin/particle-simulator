@@ -7,7 +7,7 @@ public abstract class GasParticle extends Particle {
 
     public GasParticle(Color color, int x, int y, boolean variableColor) {
         super(color, x, y, variableColor);
-        velocityY = -0.5f;
+        velocityY = 1f;
     }
 
     protected void fallUp(int x, int y) {

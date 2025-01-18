@@ -3,9 +3,12 @@ package model;
 import java.awt.Color;
 import java.util.Random;
 
+import ui.ParticleButton;
+
 public abstract class FallingLiquid extends FallingParticle {
     protected float velocityX;
     private int dispersionRate;
+    private int randDispersionRate;
     private int density;
     protected Random rand;
 
@@ -21,21 +24,10 @@ public abstract class FallingLiquid extends FallingParticle {
         return density;
     }
 
-
-    // private int calculateDisperseValue(int startX, int direction) {
-    //     for (int i = 1; i <= dispersionRate; i++) {
-    //         int checkX = startX + direction * i;
-    //         if (screen.isGas(checkX, y + 1)) {
-    //             return i - 1;
-    //         }
-    //     }
-    //     return -1;
-    // }
     private int calculateFlatDispersion(int startX, int direction) {
-        int randDispersionRate = dispersionRate + rand.nextInt(10) - 5;
         for (int i = 1; i < randDispersionRate; i++) {
             int checkX = startX + direction * i;
-            if (!screen.isGas(checkX, y) && !(screen.isLiquid(checkX, y) && screen.getLiquidDensity(checkX, y) < density)) {
+            if (!screen.inBounds(checkX, y) || (!screen.isGas(checkX, y) && !(screen.isLiquid(checkX, y) && screen.getLiquidDensity(checkX, y) < density))) {
                 return i - 1;
             }
         }
@@ -44,29 +36,14 @@ public abstract class FallingLiquid extends FallingParticle {
     // To disperse water better, checks every element between current pos and pos
     // moves as far without phasing through walls
     protected void disperse() {
+        randDispersionRate = dispersionRate + rand.nextInt(10) - 5;
         int rightValue = calculateFlatDispersion(x, 1);
         int leftValue = calculateFlatDispersion(x, -1);
-
-        // if (leftValue != -1 && rightValue != -1) {
-        //     if (leftValue < rightValue) {
-        //         this.moveTo(x - leftValue, y + 1);
-        //     } else {
-        //         this.moveTo(x + rightValue, y + 1);
-        //     }
-        // } else if (leftValue != -1 && rightValue == -1) {
-        //         this.moveTo(x - leftValue, y + 1);
-        // } else if (leftValue == -1 && rightValue != -1) {
-        //         this.moveTo(x + rightValue, y + 1);
-        // } else {
-        //     int right = calculateFlatDispersion(x, 1);
-        //     int left = calculateFlatDispersion(x, -1);
-        //     this.moveTo(x + (right > left ? right : -left), y);
-        // }
 
         if (rightValue > leftValue) {
             this.moveTo(x + rightValue, y);
         } else if (rightValue == leftValue) {
-            if (rightValue == dispersionRate - 1) {
+            if (rightValue == randDispersionRate - 1) {
                 if (screen.isGas(x + rightValue, y + 1)) {
                     this.moveTo(x + rightValue, y + 1);
                 } else if (screen.isGas(x - leftValue, y + 1)) {

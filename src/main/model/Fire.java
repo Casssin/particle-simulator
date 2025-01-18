@@ -6,10 +6,10 @@ import java.util.Random;
 
 
 public class Fire extends NonFallingParticle {
-    private static final Color COLOR = new Color(255,206,0);
+    public static final Color COLOR = new Color(255,206,0);
     private static final Color COLOR1 = new Color(255,154,0);
     private static final Color COLOR2 = new Color(255,90,0);
-    private static final Color COLOR3 = new Color(255,0,0);
+    public static final Color COLOR3 = new Color(255,0,0);
     private static final int COLORCHANCE = 5;
     private static final int DIECHANCE = 10;
     private long lifeTime = 500;

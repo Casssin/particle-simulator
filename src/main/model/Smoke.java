@@ -10,11 +10,12 @@ public class Smoke extends GasParticle {
     private static final int DIECHANCE = 100;
     private long lifeTime = 1000;
     private long lifeStart;
+    public static final Color COLOR = Color.black;
     private Clock clock;
     private Random rand;
     
     public Smoke(int x, int y) {
-        super(Color.black, x, y, false);
+        super(COLOR, x, y, false);
         clock = Clock.systemDefaultZone();
         lifeStart = clock.millis();  
         rand = new Random();

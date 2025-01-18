@@ -8,13 +8,14 @@ import ui.MainPanel;
 
 public class Steam extends GasParticle {
     private static final int DIECHANCE = 100;
+    public static final Color COLOR = Color.gray;
     private long lifeTime = 1000;
     private long lifeStart;
     private Clock clock;
     private Random rand;
     
     public Steam(int x, int y) {
-        super(Color.gray, x, y, false);
+        super(COLOR, x, y, false);
         clock = Clock.systemDefaultZone();
         lifeStart = clock.millis();  
         rand = new Random();
