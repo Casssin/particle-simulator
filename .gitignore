@@ -1,2 +1,12 @@
 *.class
 particle-simulator.jar
+.idea/artifacts/particle_sim_jar.xml
+.idea/libraries/junit_platform_console_standalone_1_10_2.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+bin/META-INF/MANIFEST.MF
+out/artifacts/particle_sim_jar/particle-sim.jar
+out/production/particle-sim/META-INF/MANIFEST.MF
+particle-sim.iml
+src/main/META-INF/MANIFEST.MF
