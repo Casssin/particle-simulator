@@ -3,8 +3,6 @@ package model;
 import java.awt.Color;
 import java.util.Random;
 
-import ui.ParticleButton;
-
 public abstract class FallingLiquid extends FallingParticle {
     protected float velocityX;
     private int dispersionRate;
@@ -12,8 +10,8 @@ public abstract class FallingLiquid extends FallingParticle {
     private int density;
     protected Random rand;
 
-    public FallingLiquid(Color color, int x, int y, int dispersionRate, int density) {
-        super(color, x, y, false);
+    public FallingLiquid(Color color, int x, int y, int dispersionRate, int density, boolean variableColor) {
+        super(color, x, y, variableColor);
         velocityX = 0f;
         this.dispersionRate = dispersionRate;
         rand = new Random();

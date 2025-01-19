@@ -1,7 +1,6 @@
 package ui;
 
 import javax.swing.JButton;
-import javax.swing.UIManager;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +40,7 @@ public class ParticleButton extends JButton {
         g.setColor(color);
         g.fillRect(0, 0, getWidth(), getHeight());
         if (mp.currParticle == currParticle) {
-            g.setColor(Color.PINK); // Selection border color
+            g.setColor(Color.YELLOW); // Selection border color
             g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
         } 
         super.paintComponent(g);

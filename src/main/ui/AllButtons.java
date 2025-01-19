@@ -4,10 +4,12 @@ import javax.swing.*;
 
 import model.Fire;
 import model.Gunpowder;
+import model.Lava;
 import model.Oil;
 import model.Sand;
 import model.Smoke;
 import model.Steam;
+import model.Stone;
 import model.Water;
 import model.Wood;
 
@@ -45,5 +47,9 @@ public class AllButtons extends JPanel {
         this.add(new ParticleButton(7, Gunpowder.COLOR, mp));
         this.add(Box.createRigidArea(new Dimension(0,PADDING)));
         this.add(new ParticleButton(8, Oil.COLOR, mp));
+        this.add(Box.createRigidArea(new Dimension(0,PADDING)));
+        this.add(new ParticleButton(9, Stone.COLOR, mp));
+        this.add(Box.createRigidArea(new Dimension(0,PADDING)));
+        this.add(new ParticleButton(10, Lava.COLOR, mp));
     }
 }

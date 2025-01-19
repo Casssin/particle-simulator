@@ -9,7 +9,7 @@ public class Water extends FallingLiquid {
     public static final Color COLOR = new Color(22, 106, 250);
 
     public Water(int x, int y) {
-        super(COLOR, x, y, DISPERSION_RATE, 2);
+        super(COLOR, x, y, DISPERSION_RATE, 2, false);
     }
 
 

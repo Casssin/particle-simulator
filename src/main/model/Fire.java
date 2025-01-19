@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 public class Fire extends NonFallingParticle {
-    public static final Color COLOR = new Color(255,206,0);
+    private static final Color COLOR = new Color(255,206,0);
     private static final Color COLOR1 = new Color(255,154,0);
     private static final Color COLOR2 = new Color(255,90,0);
     public static final Color COLOR3 = new Color(255,0,0);
@@ -50,20 +50,20 @@ public class Fire extends NonFallingParticle {
         hasUpdated = true;
     }
 
-    public void searchForWater() {
+    private void searchForWater() {
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
                 if (i == 0 && j == 0)
                     continue;
                 if (screen.isWater(i, j)) {
-                    extinguish(new Steam(this.x, this.y));
+                    extinguish(new Steam(i, j));
                     return;
                 }
             }
         }
     }
 
-    public void searchForFlammable() {
+    private void searchForFlammable() {
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
                 if (i == 0 && j == 0)

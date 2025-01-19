@@ -10,7 +10,7 @@ public class Oil extends FallingLiquid implements Flammable {
     private static final int IGNITIONCHANCE = 5;
 
     public Oil(int x, int y) {
-        super(COLOR, x, y, DISPERSION_RATE, 1);
+        super(COLOR, x, y, DISPERSION_RATE, 1, false);
     }
 
     @Override

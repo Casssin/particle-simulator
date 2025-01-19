@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -42,6 +41,10 @@ public class LabelPanel extends JPanel {
         labels.add(Gunpowder); 
         Label Oil = new Label("Oil"); 
         labels.add(Oil); 
+        Label Stone = new Label("Stone"); 
+        labels.add(Stone); 
+        Label Lava = new Label("Lava"); 
+        labels.add(Lava); 
     }
 
     public void setLabel(int currParticle) {

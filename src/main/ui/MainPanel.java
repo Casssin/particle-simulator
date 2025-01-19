@@ -6,10 +6,12 @@ import model.Sand;
 import model.Screen;
 import model.Smoke;
 import model.Steam;
+import model.Stone;
 import model.Water;
 import model.Air;
 import model.Fire;
 import model.Gunpowder;
+import model.Lava;
 import model.Oil;
 import model.Particle;
 import model.Wood;
@@ -96,6 +98,10 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             return new Gunpowder(x, y);
         } else if (currParticle == 8) {
             return new Oil(x, y);
+        } else if (currParticle == 9) {
+            return new Stone(x, y);
+        } else if (currParticle == 10) {
+            return new Lava(x, y);
         } else {
             return new Air(x, y);
         }

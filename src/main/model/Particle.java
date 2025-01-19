@@ -14,9 +14,9 @@ public abstract class Particle {
     public Particle(Color color, int x, int y, boolean variableColor) {
         rand = new Random();
         int num = rand.nextInt(100);
-        if (num < 66 || !variableColor) {
+        if (num < 75 || !variableColor) {
             this.color = color;
-        } else if (num < 82) {
+        } else if (num < 88) {
             this.color = color.darker();
         } else {
             this.color = color.brighter();
