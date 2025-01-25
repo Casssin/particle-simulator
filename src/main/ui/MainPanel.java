@@ -26,7 +26,7 @@ import java.awt.event.MouseMotionListener;
 public class MainPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
-    public static final int PARTICLE_SIZE = 2;
+    public static final int PARTICLE_SIZE = 4;
     public static final int ARR_WIDTH = SCREEN_WIDTH / PARTICLE_SIZE;
     public static final int ARR_HEIGHT = SCREEN_HEIGHT / PARTICLE_SIZE;
     public static final int CURSOR_RADIUS = 8;
@@ -53,11 +53,9 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         pressed = false;
         this.setLayout(new BorderLayout());
         buttons = new AllButtons(this);
-        // buttons.setBorder(BorderFactory.createLineBorder(Color.RED)); // Debug border
         this.add(buttons, BorderLayout.EAST);
         this.setVisible(true);
         lp = new LabelPanel();
-        // lp.setBorder(BorderFactory.createLineBorder(Color.RED)); // Debug border
         this.add(lp, BorderLayout.CENTER);
     }
 
@@ -194,21 +192,4 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     }
 
 
-    // private void drawCursor(Graphics g) {
-    //     g = (Graphics2D) g;
-    //     int centerX = mouseX / PARTICLE_SIZE;
-    //     int centerY = mouseY / PARTICLE_SIZE;
-    //     for (int x = centerX - CURSOR_RADIUS; x < centerX + CURSOR_RADIUS; x++) {
-    //         for (int y = centerY - CURSOR_RADIUS; y < centerY + CURSOR_RADIUS; y++) {
-    //             float absX = x - centerX;
-    //             float absY = y - centerY; // "absolute" values of the function, 
-    //             // used to discern whether or not a point is part of the circle
-    //             if (x >= 0 && y >= 0 && x < ARR_WIDTH && y < ARR_HEIGHT && 
-    //             absX * absX + absY * absY <= CURSOR_RADIUS * CURSOR_RADIUS) {
-    //                 g.setColor(Color.magenta);
-    //                 g.fillRect(x * PARTICLE_SIZE, y * PARTICLE_SIZE, PARTICLE_SIZE, PARTICLE_SIZE);
-    //             }
-    //         }
-    //     } 
-    // }
 }

@@ -34,7 +34,7 @@ public abstract class FallingLiquid extends FallingParticle {
     // To disperse water better, checks every element between current pos and pos
     // moves as far without phasing through walls
     protected void disperse() {
-        randDispersionRate = dispersionRate + rand.nextInt(10) - 5;
+        randDispersionRate = dispersionRate + rand.nextInt(dispersionRate) - dispersionRate / 2;
         int rightValue = calculateFlatDispersion(x, 1);
         int leftValue = calculateFlatDispersion(x, -1);
 
