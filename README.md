@@ -1,2 +1,2 @@
 ### **Demo of Simulator**
-[![Sand Sim Video](https://img.youtube.com/vi/rZIoFd7PNAg/0.jpg)](https://youtu.be/rZIoFd7PNAg)
+[![Sand Sim Video](https://img.youtube.com/vi/6h2FTE_UvyQ/0.jpg)](https://youtu.be/6h2FTE_UvyQ)
