@@ -1,1 +1,1 @@
-[![Watch the video](https://raw.githubusercontent.com/username/repository/branch/path/to/thumbnail.jpg)](https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)
+[![Sand Sim Video](https://youtu.be/rZIoFd7PNAg/0.jpg)](https://youtu.be/rZIoFd7PNAg)
